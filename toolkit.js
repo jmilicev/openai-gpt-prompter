@@ -22,7 +22,6 @@ async function query(prompt, model) {
   try {
     const response = await client.post('chat/completions', {
       model: model,
-      stream: true,
       messages: [
         {
           role: 'user',
