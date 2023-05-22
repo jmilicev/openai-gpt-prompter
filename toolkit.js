@@ -1,14 +1,14 @@
 const axios = require('axios');
+const readline = require('readline');
+
 require('dotenv').config();
 
 const apiKey = process.env.OPENAI_API_KEY;
 
-
-//use this resource for endpoints
-// https://platform.openai.com/docs/models/model-endpoint-compatibility
-// 
-// this one shows the price:
-// https://openai.com/pricing
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 const client = axios.create({
   baseURL: 'https://api.openai.com/v1',
@@ -18,30 +18,42 @@ const client = axios.create({
   },
 });
 
-async function query(prompt) {
-    try {
-      const response = await client.post('chat/completions', {
-        model: 'gpt-3.5-turbo',
-        messages: [
-          {
-            role: 'user',
-            content: prompt,
-          },
-        ],
-      });
-  
-      const message = response.data.choices[0].message.content;
-      for (let i = 0; i < message.length; i++) {
-        process.stdout.write(message[i]);
-        await new Promise(resolve => setTimeout(resolve, 10));
-      }
-    } catch (error) {
-      console.error('Error querying model', error);
-    }
-  }
+async function query(prompt, model) {
+  try {
+    const response = await client.post('chat/completions', {
+      model: model,
+      stream: true,
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        },
+      ],
+    });
 
-(async () => {
-  const prompt = 'What is the capital of France?';
-  const response = await query(prompt);
-  console.log(`query response: ${response}`);
-})();
+    const message = response.data.choices[0].message.content;
+    return message;
+  } catch (error) {
+    console.error('Error querying model', error);
+  }
+}
+
+function promptUser() {
+  console.log("Please enter a prompt for GPT");
+  rl.question('-> ', async (input) => {
+    if (input === 'exit') {
+      console.log('Terminated.');
+      rl.close();
+      return;
+    }
+
+    const response = await query(input, 'gpt-3.5-turbo');
+    console.log("-- query response --");
+    console.log(response+"\n");
+    promptUser();
+  });
+}
+
+console.log("\n-= CLI GPT Prompter =-");
+console.log("type 'exit' to close");
+promptUser();

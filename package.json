@@ -2,7 +2,7 @@
   "name": "openai-toolkit",
   "version": "1.0.0",
   "description": "A toolkit for querying openAI language models.",
-  "main": "index.js",
+  "main": "toolkit.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
