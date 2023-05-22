@@ -77,8 +77,8 @@ const req = https.request({
     //PLEASE NOTE THESE ARE ESTIMATIONS, AND ARE NOT
     // ALWAYS 100% ACCURATE!
     console.log('\n\n -- analytics --');
-    console.log("tokens spent on transmitting "+trtoken);
-    console.log("tokens spent on recieving: "+rctoken);
+    console.log("prompt tokens spent: "+trtoken);
+    console.log("completion tokens spent: "+rctoken);
     console.log("total tokens spent: "+(totaltokens))
     console.log("estimated cost: ¢"+priceinCENTS)
     console.log('\n ---- ---- ---- \n\n');
@@ -111,7 +111,7 @@ async function promptUser() {
         ],
         model: "gpt-3.5-turbo",
         temperature: 0.6,
-        //max_tokens: 35,
+        max_tokens: 35,
         stream: true
       });
 
