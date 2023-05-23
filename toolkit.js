@@ -1,6 +1,7 @@
 const https = require('https');
 const readline = require('readline');
 const { exec } = require('child_process');
+const { get } = require('http');
 
 
 require('dotenv').config();
@@ -11,9 +12,25 @@ var input = "";
 var rctoken = 0;
 var trtoken = 0;
 
+var TEMPERATURE = 0.6;
+var MAX_TOKENS = 50;
+var MODEL_TYPE = "gpt-3.5-turbo";
+
+var playtoken = 0;
+
+
+//CONSTANTS
 const startDelimiter = '{"content":"';
 const endDelimiter = '"}';
-const gpt35turbo_RATE = 0.000002;
+const gpt35turbo_RATE = 0.000002; //per 1 token
+
+async function getInput(question) {
+  return new Promise((resolve) => {
+    rl.question(question, (typed) => {
+      resolve(typed);
+    });
+  });
+}
 
 function estimateTokenCount(text) {
     return new Promise((resolve, reject) => {
@@ -45,7 +62,7 @@ const req = https.request({
     "Content-Type": "application/json",
     'Authorization': `Bearer ${apiKey}`,
   }
-}, 
+},
 
    function (res) {
    let responseData = '';
@@ -90,18 +107,54 @@ req.on('error', (e) => {
   console.error("Problem with request")
 });
 
+
+async function configSettings() {
+  console.log("\n-= CLI GPT Settings =-");
+  console.log("temp = " + TEMPERATURE + " | m-t = " + MAX_TOKENS + " | mdl = " + MODEL_TYPE);
+  console.log("type 'exit' to close\n");
+  console.log("1 - temperature");
+  console.log("2 - max_tokens");
+  console.log("3 - model");
+
+  playtoken = await getInput("-> ");
+
+  if(playtoken == 1){
+    console.log("enter temperature: ");
+    TEMPERATURE = await getInput("-> ");
+  }else if(playtoken == 2){
+    console.log("enter max tokens: ");
+    MAX_TOKENS = await getInput("-> ");
+  }else if(playtoken == 2){
+    console.log("enter model: ");
+    MODEL_TYPE= await getInput("-> ");
+  }else if(playtoken == "exit"){
+    return;
+  }
+  console.log("");
+  return;
+}
+
+
+
+
+
 async function promptUser() {
     rctoken = 0;
     trtoken = 0;
     console.log("Please enter a prompt for GPT");
     console.log("type 'exit' to close");
-    rl.question('-> ', async (input) => {
-      if (input === 'exit') {
-        console.log('Terminated.');
-        rl.close();
-        return;
-      }
-  
+    console.log("type 'config' to edit settings");
+
+    input = await getInput("-> ");
+
+    if (input === 'exit') {
+      console.log('Terminated.');
+      return;
+    }else if (input === 'config') {
+      await configSettings();
+      promptUser();
+      return;
+    }else{
       const body = JSON.stringify({
         messages: [
           {
@@ -109,9 +162,9 @@ async function promptUser() {
             content: input,
           },
         ],
-        model: "gpt-3.5-turbo",
-        temperature: 0.6,
-        max_tokens: 35,
+        model: MODEL_TYPE,
+        temperature: TEMPERATURE,
+        max_tokens: MAX_TOKENS,
         stream: true
       });
 
@@ -127,8 +180,7 @@ async function promptUser() {
 
       req.write(body);
       req.end();
-    
-    });
+  }
   }
   
   console.log("\n-= CLI GPT Prompter =-");
