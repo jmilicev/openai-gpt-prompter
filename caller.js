@@ -10,6 +10,8 @@ const apiKey = process.env.OPENAI_API_KEY;
 var rctoken = 0;
 var trtoken = 0;
 
+var potentialErrorString = "";
+
 // Retrieve command line arguments
 const args = process.argv.slice(2);
 
@@ -18,6 +20,8 @@ const INPUT = args[0];
 const TEMPERATURE = parseFloat(args[1]);
 const MAX_TOKENS = parseInt(args[2]);
 const MODEL_TYPE = args[3];
+const ANALYTICS = args[4];
+
 
 var playtoken = 0;
 
@@ -42,6 +46,9 @@ const req = https.request({
 
    res.on('data', (chunk) => {
     responseData = chunk.toString();
+    //uncomment this to debug why it is blank
+    //console.log(chunk.toString());
+    potentialErrorString += responseData;
     if(responseData.indexOf("content") != -1){
 
         rctoken ++;
@@ -64,14 +71,26 @@ const req = https.request({
     const totaltokens = rctoken+trtoken;
     const priceinCENTS = totaltokens * gpt35turbo_RATE * 100;
     
+
+    if(rctoken == 0){
+        //if no "content" messages were sent,
+        // dump the comms to display potential error
+        console.log("\n\nERROR DETECTED: ")
+        console.log("LIKELY API KEY / API ISSUE\n")
+        console.log(potentialErrorString+"\n\n");
+        console.log("\n\nEND ERROR")
+    }else if(ANALYTICS == "-a"){
     //PLEASE NOTE THESE ARE ESTIMATIONS, AND ARE NOT
     // ALWAYS 100% ACCURATE!
-    console.log('\n\n -- analytics --');
-    console.log("prompt tokens spent: "+trtoken);
-    console.log("completion tokens spent: "+rctoken);
-    console.log("total tokens spent: "+(totaltokens))
-    console.log("estimated cost: ¢"+priceinCENTS)
-    console.log(' ---- ---- ---- \n\n');
+        console.log('\n\n -- analytics --');
+        console.log("prompt tokens spent: "+trtoken);
+        console.log("completion tokens spent: "+rctoken);
+        console.log("total tokens spent: "+(totaltokens))
+        console.log("estimated cost: ¢"+priceinCENTS.toFixed(3))
+        console.log(' ---- ---- ---- \n');
+    }else{
+        console.log('\n ---- ---- ---- \n\n');
+    }
   });
 });
 
@@ -99,14 +118,15 @@ function estimateTokenCount(text) {
 
   function processCall(){
 
-    estimateTokenCount(INPUT)
-    .then((tokenCount) => {
-        trtoken = tokenCount
-    })
-    .catch((error) => {
-        console.error("Error estimating token count:", error.message);
-    });
-
+    if(ANALYTICS == "-a"){
+        estimateTokenCount(INPUT)
+        .then((tokenCount) => {
+            trtoken = tokenCount
+        })
+        .catch((error) => {
+            console.error("Error estimating token count:", error.message);
+        });
+    }
     var body = JSON.stringify({
       messages: [
         {

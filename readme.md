@@ -47,13 +47,15 @@ you can implement this program in your GPT-related projects by just calling it a
 
 #### Usage
 
-```node caller.js <question> <temperature> <max tokens> <model> ```
+```node caller.js <question> <temperature> <max tokens> <model> <token>```
 
 The program will stream the live output from the openAI API and print it in the console
 
 for example:
 
-```node caller.js "what is cheese" 0.6 50 "gpt-3.5-turbo"```
+```node caller.js "what is cheese" 0.6 50 "gpt-3.5-turbo" -a```
+
+supported tokens are currently only ```-a``` for enabling analyitcs, you can also leave it blank.
 
 ## Configuration Settings
 The CLI GPT Prompter allows you to customize the following settings:

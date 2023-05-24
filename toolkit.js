@@ -76,8 +76,7 @@ async function promptUser() {
   }
 
   function processCall(){
-    console.log("creating output");
-    callerSubproc = spawn('node', ['caller.js', input, TEMPERATURE, MAX_TOKENS, MODEL_TYPE]);
+    callerSubproc = spawn('node', ['caller.js', input, TEMPERATURE, MAX_TOKENS, MODEL_TYPE, "-a"]);
 
     callerSubproc.stdout.on('data', (data) => {
       process.stdout.write(`${data}`);
@@ -86,9 +85,6 @@ async function promptUser() {
     callerSubproc.on('close', (code) => {
       promptUser();
     });
-
-    
-
   }
 
 
