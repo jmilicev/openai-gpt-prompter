@@ -25,6 +25,8 @@ Open your terminal and navigate to the project directory.
 
 Run the following command to start the CLI GPT Prompter:
 
+### toolkit.js
+
 ```node toolkit.js```
 
 Follow the prompts displayed in the terminal:
