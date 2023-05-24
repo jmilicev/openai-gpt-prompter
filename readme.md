@@ -1,4 +1,4 @@
-# CLI GPT Prompter
+# GPT Prompter
 This is a Node.js command-line application that prompts the user for input and interacts with the GPT (Generative Pre-trained Transformer) model. It allows you to customize various settings and receive model-generated responses based on your prompts. It will 
 
 ## Prerequisites
