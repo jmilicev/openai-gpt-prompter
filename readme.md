@@ -1,5 +1,5 @@
 # CLI GPT Prompter
-This is a Node.js command-line application that prompts the user for input and interacts with the GPT (Generative Pre-trained Transformer) model. It allows you to customize various settings and receive model-generated responses based on your prompts.
+This is a Node.js command-line application that prompts the user for input and interacts with the GPT (Generative Pre-trained Transformer) model. It allows you to customize various settings and receive model-generated responses based on your prompts. It will 
 
 ## Prerequisites
 To run this application, ensure you have the following installed:
@@ -38,6 +38,21 @@ Type exit to exit the configuration menu.
 The generated output from the GPT model will be displayed in the terminal.
 
 You can continue entering prompts or customize settings as desired.
+
+### caller.js
+
+```caller.js``` is a barebones nodeJS file that handles the API communication between toolkit.js and the openAI API.
+you can implement this program in your GPT-related projects by just calling it and copying the streamed output.
+
+#### Usage
+
+```node caller.js <question> <temperature> <max tokens> <model> ```
+
+The program will stream the live output from the openAI API and print it in the console
+
+for example:
+
+```node caller.js "what is cheese" 0.6 50 "gpt-3.5-turbo"```
 
 ## Configuration Settings
 The CLI GPT Prompter allows you to customize the following settings:
