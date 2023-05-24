@@ -4,10 +4,6 @@ const { exec, spawn } = require('child_process');
 const { get } = require('http');
 
 
-require('dotenv').config();
-
-const apiKey = process.env.OPENAI_API_KEY;
-
 var input = "";
 var callerSubproc;
 

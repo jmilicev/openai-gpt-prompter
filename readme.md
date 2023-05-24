@@ -1,0 +1,55 @@
+#CLI GPT Prompter
+This is a Node.js command-line application that prompts the user for input and interacts with the GPT (Generative Pre-trained Transformer) model. It allows you to customize various settings and receive model-generated responses based on your prompts.
+
+##Prerequisites
+To run this application, ensure you have the following installed:
+
+Node.js
+npm (Node Package Manager)
+
+##Installation
+Clone this repository or download the source code files.
+Navigate to the project directory in your terminal.
+Install the required dependencies by running the following command:
+
+```npm install```
+
+##Usage
+Open your terminal and navigate to the project directory.
+
+Run the following command to start the CLI GPT Prompter:
+
+```node toolkit.js```
+
+Follow the prompts displayed in the terminal:
+
+Enter a prompt for the GPT model. You will receive a generated response based on this input.
+Type config to edit the settings:
+Select 1 to configure the temperature setting.
+Select 2 to configure the max_tokens setting.
+Select 3 to configure the model setting.
+Type exit to exit the configuration menu.
+The generated output from the GPT model will be displayed in the terminal.
+
+You can continue entering prompts or customize settings as desired.
+
+##Configuration Settings
+The CLI GPT Prompter allows you to customize the following settings:
+
+Temperature: Controls the randomness of the generated output. Higher values (e.g., 0.8) produce more random output, while lower values (e.g., 0.2) produce more deterministic output.
+
+Max Tokens: Specifies the maximum number of tokens in the generated output. Higher values allow for longer responses, but be aware that GPT models have a maximum token limit.
+
+Model Type: Sets the model type to be used. The default value is "gpt-3.5-turbo".
+
+##License
+This project is licensed under the MIT License.
+
+##Disclaimer
+Please note that this application interacts with GPT models and relies on an API key or access to an appropriate GPT model. Ensure that you have the necessary authorization and comply with the terms of use for the specific GPT model you are using.
+
+##Contributing
+Contributions to improve this CLI GPT Prompter are welcome! Feel free to open issues or submit pull requests to address bugs, add new features, or enhance the existing functionality.
+
+##Authors
+Jovan Milicev
