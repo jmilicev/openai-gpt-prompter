@@ -32,29 +32,30 @@ const rl = readline.createInterface({
 
 
 async function configSettings() {
-  console.log("\n-= CLI GPT Settings =-");
-  console.log("temp = " + TEMPERATURE + " | m-t = " + MAX_TOKENS + " | mdl = " + MODEL_TYPE);
-  console.log("type 'exit' to close\n");
-  console.log("1 - temperature");
-  console.log("2 - max_tokens");
-  console.log("3 - model");
 
-  playtoken = await getInput("-> ");
+  while(playtoken != "exit"){
+    console.log("\n-= CLI GPT Settings =-");
+    console.log("temp = " + TEMPERATURE + " | m-t = " + MAX_TOKENS + " | mdl = " + MODEL_TYPE);
+    console.log("type 'exit' to close\n");
+    console.log("1 - temperature");
+    console.log("2 - max_tokens");
+    console.log("3 - model");
 
-  if(playtoken == 1){
-    console.log("enter temperature: ");
-    TEMPERATURE = await getInput("-> ");
-  }else if(playtoken == 2){
-    console.log("enter max tokens: ");
-    MAX_TOKENS = await getInput("-> ");
-  }else if(playtoken == 2){
-    console.log("enter model: ");
-    MODEL_TYPE= await getInput("-> ");
-  }else if(playtoken == "exit"){
-    return;
-  }
-  console.log("");
-  return;
+    playtoken = await getInput("-> ");
+
+    if(playtoken == 1){
+      console.log("enter temperature: ");
+      TEMPERATURE = await getInput("-> ");
+    }else if(playtoken == 2){
+      console.log("enter max tokens: ");
+      MAX_TOKENS = await getInput("-> ");
+    }else if(playtoken == 2){
+      console.log("enter model: ");
+      MODEL_TYPE= await getInput("-> ");
+    }
+    console.log("");
+}
+return;
 }
 
 async function promptUser() {

@@ -120,7 +120,8 @@ function estimateTokenCount(text) {
       stream: true
     });
     
-    console.log("\n -- GPT: --\n");
+    console.log("\n -- GPT: --");
+    console.log("temp = " + TEMPERATURE + " | m-t = " + MAX_TOKENS + " | mdl = " + MODEL_TYPE+"\n");
 
     req.write(body);
     req.end();
