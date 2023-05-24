@@ -23,9 +23,8 @@ You can get your key here: https://platform.openai.com/account/api-keys
 ## Usage
 Open your terminal and navigate to the project directory.
 
-Run the following command to start the CLI GPT Prompter:
-
 ### toolkit.js
+Run the following command to start the CLI GPT Prompter:
 
 ```node toolkit.js```
 
