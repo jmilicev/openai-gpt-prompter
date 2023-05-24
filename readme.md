@@ -63,7 +63,8 @@ Temperature: Controls the randomness of the generated output. Higher values (e.g
 Max Tokens: Specifies the maximum number of tokens in the generated output. Higher values allow for longer responses, but be aware that GPT models have a maximum token limit.
 
 Model Type: Sets the model type to be used. The default value is "gpt-3.5-turbo".
-
+The available options are ```gpt-4```, ```gpt-4-0314```, ```gpt-4-32k```, ```gpt-4-32k-0314```, ```gpt-3.5-turbo```, and ```gpt-3.5-turbo-0301```.
+ 
 ## License
 This project is licensed under the MIT License.
 
