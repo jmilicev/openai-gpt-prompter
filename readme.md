@@ -14,6 +14,12 @@ Install the required dependencies by running the following command:
 
 ```npm install```
 
+create a .env file and add the following line:
+
+```OPENAI_API_KEY=<Your-OpenAI-Key>```
+
+You can get your key here: https://platform.openai.com/account/api-keys
+
 ## Usage
 Open your terminal and navigate to the project directory.
 
