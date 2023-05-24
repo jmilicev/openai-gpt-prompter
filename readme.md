@@ -1,20 +1,20 @@
-#CLI GPT Prompter
+# CLI GPT Prompter
 This is a Node.js command-line application that prompts the user for input and interacts with the GPT (Generative Pre-trained Transformer) model. It allows you to customize various settings and receive model-generated responses based on your prompts.
 
-##Prerequisites
+## Prerequisites
 To run this application, ensure you have the following installed:
 
 Node.js
 npm (Node Package Manager)
 
-##Installation
+## Installation
 Clone this repository or download the source code files.
 Navigate to the project directory in your terminal.
 Install the required dependencies by running the following command:
 
 ```npm install```
 
-##Usage
+## Usage
 Open your terminal and navigate to the project directory.
 
 Run the following command to start the CLI GPT Prompter:
@@ -33,7 +33,7 @@ The generated output from the GPT model will be displayed in the terminal.
 
 You can continue entering prompts or customize settings as desired.
 
-##Configuration Settings
+## Configuration Settings
 The CLI GPT Prompter allows you to customize the following settings:
 
 Temperature: Controls the randomness of the generated output. Higher values (e.g., 0.8) produce more random output, while lower values (e.g., 0.2) produce more deterministic output.
@@ -42,14 +42,14 @@ Max Tokens: Specifies the maximum number of tokens in the generated output. High
 
 Model Type: Sets the model type to be used. The default value is "gpt-3.5-turbo".
 
-##License
+## License
 This project is licensed under the MIT License.
 
-##Disclaimer
+## Disclaimer
 Please note that this application interacts with GPT models and relies on an API key or access to an appropriate GPT model. Ensure that you have the necessary authorization and comply with the terms of use for the specific GPT model you are using.
 
-##Contributing
+## Contributing
 Contributions to improve this CLI GPT Prompter are welcome! Feel free to open issues or submit pull requests to address bugs, add new features, or enhance the existing functionality.
 
-##Authors
+## Authors
 Jovan Milicev
