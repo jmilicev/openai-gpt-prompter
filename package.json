@@ -12,6 +12,7 @@
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
     "openai": "^3.2.1",
+    "openai-toolkit": "^1.0.0",
     "python-shell": "^5.0.0"
   }
 }

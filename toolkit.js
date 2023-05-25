@@ -1,8 +1,9 @@
-const https = require('https');
+var openAItoolkit = require('openai-toolkit');
 const readline = require('readline');
-const { exec, spawn } = require('child_process');
-const { get } = require('http');
 
+require('dotenv').config();
+
+const APIKEY = process.env.OPENAI_API_KEY;
 
 var input = "";
 var callerSubproc;
@@ -76,18 +77,8 @@ async function promptUser() {
   }
 
   function processCall(){
-    callerSubproc = spawn('node', ['caller.js', input, TEMPERATURE, MAX_TOKENS, MODEL_TYPE, "-a"]);
-
-    callerSubproc.stdout.on('data', (data) => {
-      process.stdout.write(`${data}`);
-    });
-
-    callerSubproc.on('close', (code) => {
-      promptUser();
-    });
+    openAItoolkit.call(input,TEMPERATURE,MAX_TOKENS,MODEL_TYPE, "-ae", APIKEY)
   }
-
-
   
   console.log("\n-= CLI GPT Prompter =-");
   promptUser();
