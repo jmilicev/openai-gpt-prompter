@@ -1,6 +1,4 @@
-Certainly! Here's an example of a `README.md` file for the `toolkit.js` script:
 
-```markdown
 # OpenAI Toolkit
 
 This toolkit provides a command-line interface (CLI) for interacting with OpenAI's GPT models. It allows you to generate text based on prompts using the OpenAI API.
@@ -58,11 +56,3 @@ The toolkit provides options to configure the following settings:
 - Model Type: Specifies the GPT model to use. The default is "gpt-3.5-turbo", which is the most advanced model as of the last update.
 
 To edit the settings, type 'config' when prompted for a new input and follow the instructions.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-```
-
-Please note that you may need to modify the sections and instructions based on your specific implementation and requirements.
