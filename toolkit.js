@@ -1,4 +1,4 @@
-var openAItoolkit = require('openai-toolkit');
+const { call } = require('openai-toolkit');
 const readline = require('readline');
 
 require('dotenv').config();
@@ -58,7 +58,7 @@ return;
 async function promptUser() {
     rctoken = 0;
     trtoken = 0;
-    console.log("Please enter a prompt for GPT");
+    console.log("\nPlease enter a prompt for GPT");
     console.log("type 'exit' to close");
     console.log("type 'config' to edit settings");
 
@@ -77,7 +77,16 @@ async function promptUser() {
   }
 
   function processCall(){
-    openAItoolkit.call(input,TEMPERATURE,MAX_TOKENS,MODEL_TYPE, "-ae", APIKEY)
+    call(input, TEMPERATURE, MAX_TOKENS, MODEL_TYPE, "a", APIKEY, onData, onEnd);
+
+    function onData(output) {
+      process.stdout.write(output);
+    }
+
+    function onEnd() {
+      promptUser();
+    }
+
   }
   
   console.log("\n-= CLI GPT Prompter =-");
