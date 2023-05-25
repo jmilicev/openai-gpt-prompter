@@ -75,7 +75,7 @@ async function promptUser() {
   }
 
   function processCall(){
-    call(input, TEMPERATURE, MAX_TOKENS, MODEL_TYPE, "a", APIKEY, onData, onEnd);
+    call(input, TEMPERATURE, MAX_TOKENS, MODEL_TYPE, "af", APIKEY, onData, onEnd);
 
     function onData(output) {
       process.stdout.write(output);

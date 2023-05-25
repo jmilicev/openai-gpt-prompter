@@ -1,80 +1,68 @@
-# GPT Prompter
-This is a Node.js command-line application that prompts the user for input and interacts with the GPT (Generative Pre-trained Transformer) model. It allows you to customize various settings and receive model-generated responses based on your prompts. It will also give you an estimated amount of tokens that were used for the query, as well as an aproximate price. 
+Certainly! Here's an example of a `README.md` file for the `toolkit.js` script:
+
+```markdown
+# OpenAI Toolkit
+
+This toolkit provides a command-line interface (CLI) for interacting with OpenAI's GPT models. It allows you to generate text based on prompts using the OpenAI API.
 
 ## Prerequisites
-To run this application, ensure you have the following installed:
 
-Node.js
-npm (Node Package Manager)
+Before using this toolkit, make sure you have the following installed:
+
+- Node.js 
+- NPM (Node Package Manager)
 
 ## Installation
-Clone this repository or download the source code files.
-Navigate to the project directory in your terminal.
-Install the required dependencies by running the following command:
 
-```npm install```
+1. Clone the repository or download the `toolkit.js` script to your local machine.
 
-create a .env file and add the following line:
+2. Install the required dependencies by running the following command in the project directory:
 
-```OPENAI_API_KEY=<Your-OpenAI-Key>```
+   ```shell
+   npm install
+   ```
 
-You can get your key here: https://platform.openai.com/account/api-keys
+3. Create a `.env` file in the project directory and add your OpenAI API key as follows:
+
+   ```plaintext
+   OPENAI_API_KEY=your_api_key_here
+   ```
 
 ## Usage
-Open your terminal and navigate to the project directory.
 
-### toolkit.js
-Run the following command to start the CLI GPT Prompter:
+To use the toolkit, follow these steps:
 
-```node toolkit.js```
+1. Open a terminal and navigate to the project directory.
 
-Follow the prompts displayed in the terminal:
+2. Run the following command to start the CLI prompt:
 
-Enter a prompt for the GPT model. You will receive a generated response based on this input.
-Type config to edit the settings:
-Select 1 to configure the temperature setting.
-Select 2 to configure the max_tokens setting.
-Select 3 to configure the model setting.
-Type exit to exit the configuration menu.
-The generated output from the GPT model will be displayed in the terminal.
+   ```shell
+   node toolkit.js
+   ```
 
-You can continue entering prompts or customize settings as desired.
+3. You will be prompted to enter a prompt for GPT. Type your prompt and press Enter.
 
-### caller.js
+4. The generated text will be displayed in the console.
 
-```caller.js``` is a barebones nodeJS file that handles the API communication between toolkit.js and the openAI API.
-you can implement this program in your GPT-related projects by just calling it and copying the streamed output.
+   - If you want to exit the program, type 'exit' and press Enter.
+   - If you want to edit the settings, type 'config' and press Enter. You can modify the temperature, max_tokens, and model type.
 
-#### Usage
+## Configuration
 
-```node caller.js <question> <temperature> <max tokens> <model> <token>```
+The toolkit provides options to configure the following settings:
 
-The program will stream the live output from the openAI API and print it in the console
+- Temperature: Controls the randomness of the generated text. A higher value (e.g., 0.8) produces more random outputs, while a lower value (e.g., 0.2) produces more deterministic outputs.
 
-for example:
+- Max Tokens: Limits the length of the generated text. You can set the maximum number of tokens the model should generate.
 
-```node caller.js "what is cheese" 0.6 50 "gpt-3.5-turbo" -a```
+- Model Type: Specifies the GPT model to use. The default is "gpt-3.5-turbo", which is the most advanced model as of the last update.
 
-supported tokens are currently only ```-a``` for enabling analyitcs, you can also leave it blank.
+To edit the settings, type 'config' when prompted for a new input and follow the instructions.
 
-## Configuration Settings
-The CLI GPT Prompter allows you to customize the following settings:
-
-Temperature: Controls the randomness of the generated output. Higher values (e.g., 0.8) produce more random output, while lower values (e.g., 0.2) produce more deterministic output.
-
-Max Tokens: Specifies the maximum number of tokens in the generated output. Higher values allow for longer responses, but be aware that GPT models have a maximum token limit.
-
-Model Type: Sets the model type to be used. The default value is "gpt-3.5-turbo".
-The available options are ```gpt-4```, ```gpt-4-0314```, ```gpt-4-32k```, ```gpt-4-32k-0314```, ```gpt-3.5-turbo```, and ```gpt-3.5-turbo-0301```.
- 
 ## License
-This project is licensed under the MIT License.
 
-## Disclaimer
-Please note that this application interacts with GPT models and relies on an API key or access to an appropriate GPT model. Ensure that you have the necessary authorization and comply with the terms of use for the specific GPT model you are using.
+This project is licensed under the [MIT License](LICENSE).
 
-## Contributing
-Contributions to improve this CLI GPT Prompter are welcome! Feel free to open issues or submit pull requests to address bugs, add new features, or enhance the existing functionality.
+```
 
-## Authors
-Jovan Milicev
+Please note that you may need to modify the sections and instructions based on your specific implementation and requirements.
