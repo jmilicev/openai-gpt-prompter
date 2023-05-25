@@ -56,8 +56,6 @@ return;
 }
 
 async function promptUser() {
-    rctoken = 0;
-    trtoken = 0;
     console.log("\nPlease enter a prompt for GPT");
     console.log("type 'exit' to close");
     console.log("type 'config' to edit settings");
